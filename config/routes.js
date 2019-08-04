@@ -26,7 +26,7 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
-  'POST /user/computeData': 'UserController.computeData',
+  'POST /process/age': 'UserController.computeData',
 
   /***************************************************************************
   *                                                                          *

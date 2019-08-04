@@ -10,26 +10,21 @@ module.exports = {
 
   computeData: async function(req,res){
 
-    var age = req.allParams().age
-    var color = '#FFFFFF'
-    var colorName = 'WHITE'
+    var birthDate = req.allParams().birthDate
 
-    if(age>=1 && age<=20){
-        color = '#03A9F4'
-        colorName = 'LightBlue'
-    }else if(age<=50){
-        color = '#ef5350'
-        colorName = 'LightRed'
-    }else{
-        color = '#9E9E9E'
-        colorName = 'Gray'
+    //determine the age
+    var today = new Date();
+    var birthDate = new Date(req.allParams().birthDate);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
     }
 
     return res.ok({
       name:req.allParams().name,
-      age:req.allParams().age,
-      color: color,
-      colorName: colorName,
+      birthDate:req.allParams().birthDate,
+      age:age,
     })
 
   },
